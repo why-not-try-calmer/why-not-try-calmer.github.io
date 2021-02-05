@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% from "macros/blog.html" import render_blog_post %}
+{% block title %}{{ this.title }}{% endblock %}
+{% block body %}
+
+
+{{ render_blog_post(this) }}
+  
+<br>
+{% if this.tags %}
+<h3>Tags</h3>
+  {% for t in this.tags -%}
+      <a href="{{ ('/blog@tag/' ~ t.lower())|url }}">{{ t }}</a>&nbsp;&nbsp;
+  {% endfor %}
+{% endif %}
+
+<br><br>
+<h1>Comments</h1>
+<div class="comments">{{ render_disqus_comments() }}</div>
+</div>
+<!-- END MAIN BODY -->
+
+{% endblock %}
