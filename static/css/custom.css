@@ -79,7 +79,7 @@ nav > a:hover {
 
 .site-pagination {
   margin-top: 0rem;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
 }
 
 .site-pagination > a {
@@ -87,7 +87,7 @@ nav > a:hover {
 }
 
 .site-footer {
-  padding: 2rem 0;
+  padding: 0.75rem 0;
   color: rgb(190, 190, 190);
   text-align: center;
   background-color: #f7f7f9;
