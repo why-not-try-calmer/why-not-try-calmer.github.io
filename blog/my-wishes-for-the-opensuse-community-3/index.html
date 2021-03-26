@@ -78,6 +78,38 @@
   </p>
 
   
+  <p>This is the third post in a series of three where I list things -- in no particular order -- that I sincerely wish will improve over the upcoming years, starting with 2021, with the openSUSE community. Each wish targets a value I believe is essential for the community to blossom.</p>
+<p>This last post is a bit particular, for it's not exactly a new things: it's just me threading together the last two ideas, trying to take advantage of their potential for synergies.</p>
+<h3>Piecing things together: serious apprenticeship with improved visibility</h3>
+<p>So openSUSE needs to make it easier for people to discover what other people are working on (that's the <em>improved visibility</em> part), and openSUSE also needs to make it easier for knowledge to flow from seasoned contributors to newcomers (that's the _serious apprenticeship part). Can we eliminate overhead and make one thing out of these two?</p>
+<p>I think we can. First let me break the idea into smaller bits, then provide a concrete implementation for the idea within the openSUSE infrastructure, and finally identify some pain points that skeptics are likely to identify, trying to address their worries as we go.</p>
+<p>Actually wait, let's jump directly to the implementation. I think it's so simple that it speaks for itself. To makes things vivid I will present it as part of a sequence that goes like this:</p>
+<h4>Subscription</h4>
+<p>A new user finds out out openSUSE distributions. Because there are reminded a couple of time on both the website linking to the installer(s) and by the installer itself, they create an openSUSE "OpenID" account on our infrastructure. Well, in fact they do more than just creating an account; they <em>subscribe to potential contribution areas</em>. Concretely, they fill in a form that goes like this:</p>
+<pre><code>a. Do you want to participate to the "suggest me something to do / suggest them something to do" programme? _yes_ / _no_
+b. Please tick things you would like to do:
+[] answer to posts or instant messages soliciting user support: [] check if similar past experience
+[] moderating communication channels and platforms: [] check if similar past experience
+[] writing documentation: [] check if similar past experience
+[] writing memos or posts for internal or external communication: [] check if similar past experience
+[] doing web design: [] check if similar past experience
+[] contributing to packages; [] check this box if interested to maintain: [] check if past experience 
+[] developing and maintaining the infrastructure stack: [] check if similar past experience 
+[] engineering, developing and maintaining the core system packages: [] check if similar past experience 
+[] organizing community activities and events: [] check if similar past experience 
+[] getting involved in the governance or institutional bodies of openSUSE (Board, Election Committee...): [] check if similar past experience
+c. Do you want to subscribe to a "waiting queue" so that we will get in touch with you as soon as we find a job or task that resonates with your interests? Your participation to a "waiting queue" will not be published. You will be able opt out at any point. _yes_ / _no_
+d. Do you accept to have your contact details published on the website for other people to review it? Your participation to a "waiting queue" will not be published. _yes_ / _no_
+</code></pre>
+<p>Now imagine there is a symmetrical counterpart of this form available to seasoned users, maintainers and generally speaking to anyone in the community looking for contributors to his thing. Using the very same infrastructure, they can express their wish to get a hand, whether for the short or the long term. This means that now offer and demand can be subject to</p>
+<h4>Matching</h4>
+<p>Here we don't need machine learning shenanigans. This is not Tinder. And we don't have the numbers anyway. Instead we can keep it simple, stupid and count the number of matching boxes between those looking for contribution opportunities and those looking for contributors. We can also rank matches based on how much time someone looking for a contribution opportunity spent in the waiting queue -- starting with all contribution-seekers who've answered 'Yes' to (c,d), and moving on to those who've subscribed only to (c) if no match was found. We can also make the ranking sensitive to how many past contributions someone has made (i.e. to ensure a fair distribution between contributors).</p>
+<h4>Records</h4>
+<p>Summing up: so far we have got people who'd like to contribute and projects they can contribute to visible to the system. Of those who've expressed their desire to contribute, some of them are in waiting queues, and some of them are visible on a public platform. All of these people can be matched at any point, giving priority to those in a waiting queue. And now comes the notion of Records. Let's say I contribute to project A and then move on to B. Based on my experience with A, the system should be able to fall back on me should it fail to match anyone currently looking for a contribution in the system. That is, the matching algorithm should go something like "priority queue &amp; subscribed &gt; subscribed &gt; former contributor". "Former contributors are the "Old Guard", a like in a Napoleon's army, it makes sense to call the Old Guard when the other lines of fire have failed.</p>
+<p>But wait a minute! you will say. How do we apply a temporal frame around contributions after a matching has occurred? For we sure need something like an agreement between contribution-seekers and contributors-seekers. Here's a simple way of going about it: when a match occurs, both parties "handshake", i.e. confirm that they agree to play the game. Similar handshakes can re-occur at certain predetermined intervals, say, after 1 weeks, after 3 weeks, after 1 month, etc. The scaling does not matter for present purposes. We now have a workflow where we can keep track of <em>actual contributions</em>, giving visibility to projects, contributors, and maintainers.</p>
+<p>Now make all this publicly visible (in a way compatible with both parties' privacy preferences), and you've fixed both the visibility and the knowledge transfer problem affecting the openSUSE community.</p>
+
+  
 
 </div>
 <!-- END BLOG POST -->
