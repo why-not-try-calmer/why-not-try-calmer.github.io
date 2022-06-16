@@ -3,10 +3,9 @@
 import           Data.Monoid (mappend)
 import           Hakyll
 
-
 --------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith siteConfig $ do
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
@@ -25,8 +24,10 @@ main = hakyll $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
+        makeFeed
 
     create ["archive.html"] $ do
         route idRoute
@@ -41,7 +42,6 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
-
 
     match "index.html" $ do
         route idRoute
@@ -58,9 +58,28 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateBodyCompiler
 
-
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+feedConfig :: FeedConfiguration
+feedConfig = FeedConfiguration
+    { feedTitle       = "Why Not Try Calmer: Blog"
+    , feedDescription = "Just an ordinary blog"
+    , feedAuthorName  = "Adrien Glauser"
+    , feedAuthorEmail = "adrien.glauser@gmail.com"
+    , feedRoot        = "https://why-not-try-calmer.github.io"
+    }
+
+makeFeed :: Rules ()
+makeFeed = create ["rss.xml"] $ do
+    route idRoute
+    compile $ do
+        let feedCtx = postCtx `mappend` bodyField "description"
+        posts <- fmap (take 20) . recentFirst =<< loadAllSnapshots "posts/*" "content"
+        renderRss feedConfig feedCtx posts
+
+siteConfig :: Configuration
+siteConfig = defaultConfiguration { destinationDirectory = "docs" }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Why Not Try Calmer: Blog</title>
+        <link>https://why-not-try-calmer.github.io</link>
+        <description><![CDATA[Just an ordinary blog]]></description>
+        <atom:link href="https://why-not-try-calmer.github.io/rss.xml" rel="self"
+                   type="application/rss+xml" />
+        <lastBuildDate>Tue, 21 Jun 2022 00:00:00 UT</lastBuildDate>
+        <item>
+    <title>Init</title>
+    <link>https://why-not-try-calmer.github.io/posts/2022-06-21-init.html</link>
+    <description><![CDATA[<article>
+    <section class="header">
+        Posted on June 21, 2022
+        
+            by Adrien
+        
+    </section>
+    <section>
+        <p>Let’s see how it works.</p>
+    </section>
+</article>
+]]></description>
+    <pubDate>Tue, 21 Jun 2022 00:00:00 UT</pubDate>
+    <guid>https://why-not-try-calmer.github.io/posts/2022-06-21-init.html</guid>
+    <dc:creator>Adrien Glauser</dc:creator>
+</item>
+
+    </channel>
+</rss>
