@@ -17,5 +17,8 @@ pkgs.mkShell
     pkgs.pkg-config
     pkgs.zlib
   ];
-  runScript = "bash";
+  shellHook = ''
+    export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive";
+    export LANG=en_US.UTF-8
+  '';
 }
