@@ -2,3 +2,5 @@ _cache
 _site
 .stack-work
 
+.vscode/settings.json
+stack.yaml.lock
