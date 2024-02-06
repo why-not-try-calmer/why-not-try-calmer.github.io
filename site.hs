@@ -78,7 +78,7 @@ feedConfig =
     }
 
 makeFeed :: Rules ()
-makeFeed = create ["rss.xml"] $ do
+makeFeed = create ["feed.xml"] $ do
   route idRoute
   compile $ do
     let feedCtx = postCtx `mappend` bodyField "description"
