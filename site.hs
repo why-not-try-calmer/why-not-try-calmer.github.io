@@ -17,19 +17,19 @@ main = hakyllWith siteConfig $ do
 
   match (fromList ["about.rst", "contact.markdown"]) $ do
     route $ setExtension "html"
-    compile
-      $ pandocCompiler
-      >>= loadAndApplyTemplate "templates/default.html" defaultContext
-      >>= relativizeUrls
+    compile $
+      pandocCompiler
+        >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        >>= relativizeUrls
 
   match "posts/*" $ do
     route $ setExtension "html"
-    compile
-      $ pandocCompiler
-      >>= loadAndApplyTemplate "templates/post.html" postCtx
-      >>= saveSnapshot "content"
-      >>= loadAndApplyTemplate "templates/default.html" postCtx
-      >>= relativizeUrls
+    compile $
+      pandocCompiler
+        >>= loadAndApplyTemplate "templates/post.html" postCtx
+        >>= saveSnapshot "content"
+        >>= loadAndApplyTemplate "templates/default.html" postCtx
+        >>= relativizeUrls
     makeFeed
 
   create ["archive.html"] $ do
